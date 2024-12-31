@@ -1,0 +1,39 @@
+/*
+ * Configuration for Lily58 keyboard using ESP32-S3
+ */
+
+/ {
+    chosen {
+        zmk,matrix-transform = &lily58_transform;
+    };
+
+    matrix {
+        rows = <5>; /* 5 rows as per your configuration */
+        cols = <6>; /* 6 columns as per your configuration */
+
+        /* Define row GPIO pins */
+        row-gpios = <&gpio0 47 GPIO_ACTIVE_LOW>,  /* ROW 0 -> GPIO47 */
+                    <&gpio0 48 GPIO_ACTIVE_LOW>,  /* ROW 1 -> GPIO48 */
+                    <&gpio0 9 GPIO_ACTIVE_LOW>,   /* ROW 2 -> GPIO9 */
+                    <&gpio0 10 GPIO_ACTIVE_LOW>,  /* ROW 3 -> GPIO10 */
+                    <&gpio0 11 GPIO_ACTIVE_LOW>;  /* ROW 4 -> GPIO11 */
+
+        /* Define column GPIO pins */
+        col-gpios = <&gpio0 4 GPIO_ACTIVE_LOW>,   /* COL 0 -> GPIO4 */
+                    <&gpio0 5 GPIO_ACTIVE_LOW>,   /* COL 1 -> GPIO5 */
+                    <&gpio0 7 GPIO_ACTIVE_LOW>,   /* COL 2 -> GPIO7 */
+                    <&gpio0 15 GPIO_ACTIVE_LOW>,  /* COL 3 -> GPIO15 */
+                    <&gpio0 16 GPIO_ACTIVE_LOW>,  /* COL 4 -> GPIO16 */
+                    <&gpio0 18 GPIO_ACTIVE_LOW>;  /* COL 5 -> GPIO18 */
+    };
+
+    zmk,matrix-transform {
+        compatible = "zmk,matrix-transform";
+        col-count = <6>;
+        row-count = <5>;
+    };
+
+    &gpio0 {
+        status = "okay";
+    };
+};
